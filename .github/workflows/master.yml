@@ -98,7 +98,7 @@ jobs:
     - name: Run training
       run: |
         aws sagemaker create-training-job --training-job-name minecraft-copilot-ml-${{ github.sha }} \
-          --algorithm-specification TrainingImage=$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }},TrainingInputMode=File,TrainingImageConfig={"TrainingRepositoryMode": "Vpc"} \
+          --algorithm-specification 'TrainingImage=$ECR_REGISTRY/$ECR_REPOSITORY:${{ github.sha }},TrainingInputMode=File,TrainingImageConfig={TrainingRepositoryAccessMode=Vpc}' \
           --role-arn arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/service-role/AmazonSageMaker-ExecutionRole-20211007T141028 \
           --output-data-config S3OutputPath=s3://minecraft-copilot-ml-training-job/${{ github.sha }} \
           --resource-config InstanceCount=1,InstanceType=ml.m5.large,VolumeSizeInGB=1 \
