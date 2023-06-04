@@ -91,4 +91,4 @@ jobs:
 
     - name: Run training
       run: |
-        aws create-training-job --job-name minecraft-copilot-ml --algorithm-specification TrainingImage=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG,TrainingInputMode=File --role-arn arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/service-role/AmazonSageMaker-ExecutionRole-20211007T141028 --output-data-config S3OutputPath=s3://minecraft-copilot-ml-training-job --resource-config InstanceCount=1,InstanceType=ml.m5.large,VolumeSizeInGB=1,InstanceCount=1 --stopping-condition MaxRuntimeInSeconds=7200
+        aws sagemaker create-training-job --job-name minecraft-copilot-ml --algorithm-specification TrainingImage=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG,TrainingInputMode=File --role-arn arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/service-role/AmazonSageMaker-ExecutionRole-20211007T141028 --output-data-config S3OutputPath=s3://minecraft-copilot-ml-training-job --resource-config InstanceCount=1,InstanceType=ml.m5.large,VolumeSizeInGB=1,InstanceCount=1 --stopping-condition MaxRuntimeInSeconds=7200
