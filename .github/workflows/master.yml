@@ -102,3 +102,4 @@ jobs:
           --output-data-config S3OutputPath=s3://minecraft-copilot-ml-training-job/${{ github.sha }} \
           --resource-config InstanceCount=1,InstanceType=ml.m5.large,VolumeSizeInGB=1 \
           --stopping-condition MaxRuntimeInSeconds=7200
+          --vpc-config Subnets=subnet-0790a43a46eb79dfc,subnet-09c39b225dc62dc66,subnet-05ee5401ebbba5686,SecurityGroupIds=sg-021242b98d384f4bf
