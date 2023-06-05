@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 import torch
 from tqdm import tqdm
 import mlflow
+import boto3
 
 from minecraft_copilot_ml.model import UNet3D
 from minecraft_copilot_ml.data_loader import (
@@ -30,6 +31,7 @@ if __name__ == "__main__":
         train_files, test_files = train_test_split(file_list, test_size=0.2)
         train_dataset = MinecraftSchematicsDataset(train_files)
         test_dataset = MinecraftSchematicsDataset(test_files)
+
         train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
         test_loader = DataLoader(test_dataset, batch_size=4, shuffle=True)
         loss_fn = nn.CrossEntropyLoss()
